@@ -1,0 +1,111 @@
+html,
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont,
+    'Segoe UI', "Helvetica Neue", Lato, Roboto,
+    "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei",
+    sans-serif;
+    /*line-height: 1;*/
+}
+
+* {
+    box-sizing: border-box;
+}
+/*------header-----*/
+/*隐藏滚动条*/
+html {
+    /* 需隐藏最外层不可见区域以使视差生效 */
+    overflow: hidden;
+}
+
+body {
+    /* 开启3d空间，数值越小3D效果越大 */
+    perspective: 0.9px;
+    /* 在3D空间进行transform */
+    transform-style: preserve-3d;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* 需要设置高度以使时差生效 */
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100vh;
+
+    transform-style: inherit;
+}
+
+header h1 {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.5em 4em;
+    font-size: 2em;
+
+}
+
+header::before {
+    content: "";
+    display: block;
+    background-image: url("../img/back.jpg");
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+
+    /*Core Code*/
+    /*向z轴移动1px，大小会缩小1倍，用scale放大*/
+    /*数值大小要比3d空间大小略小，否则有白边*/
+    transform: translateZ(-0.8px) scale(2);
+}
+
+/*屏幕适配*/
+@media screen and (max-width: 1024px) {
+    header h1 {
+        font-size: 2.5em;
+        padding: 1em 1.5em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    header h1 {
+        font-size: 1.5em;
+        padding: 1em 1em;
+    }
+}
+
+/*------header-----*/
+
+main {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    background-color: #000;
+
+}
+
+.layout {
+    padding: 2rem 15px;
+}
+
+.article-container {
+    width: 90vw;
+    max-width: 960px;
+    height: 100vw;
+    padding: 6em 0;
+    color: white;
+    font-size: 18px;
+    text-align: justify;
+    letter-spacing: 0.075em;
+    /*text-indent: 2em;*/
+    line-height: 1.8em;
+    align-items: center;
+    justify-content: center;
+}
+
