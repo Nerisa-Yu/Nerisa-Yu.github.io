@@ -5,12 +5,68 @@ body {
     'Segoe UI', "Helvetica Neue", Lato, Roboto,
     "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei",
     sans-serif;
-    /*line-height: 1;*/
+    color: white;
+    font-size: 18px;
+    text-align: justify;
+    letter-spacing: 0.075em;
+    line-height: 1.8em;
+    align-items: center;
 }
 
 * {
     box-sizing: border-box;
 }
+
+/*------nav-----*/
+nav {
+    padding: 0 5vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    padding: 0;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    flex: 1;
+}
+
+.nav-menu {
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+
+    max-width: 500px;
+}
+
+.nav-menu li {
+    list-style: none;
+    font-weight: 600;
+}
+
+.burger div{
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px;
+}
+
+.burger{
+    display: none;
+}
+
 /*------header-----*/
 /*隐藏滚动条*/
 html {
@@ -80,32 +136,117 @@ header::before {
     }
 }
 
-/*------header-----*/
 
 main {
     display: flex;
     justify-content: center;
     position: relative;
-    background-color: #000;
+    background-color: #000000;
 
 }
 
 .layout {
-    padding: 2rem 15px;
+    flex: 1 auto;
+    padding: 2rem 2rem;
+    margin: 0 auto;
+    display: flex;
+    /*justify-content: space-evenly;*/
+    max-width: 1200px;
+    width: 100%;
+    height: 100vh;
+
+
 }
 
 .article-container {
-    width: 90vw;
-    max-width: 960px;
-    height: 100vw;
-    padding: 6em 0;
-    color: white;
-    font-size: 18px;
-    text-align: justify;
-    letter-spacing: 0.075em;
-    /*text-indent: 2em;*/
-    line-height: 1.8em;
-    align-items: center;
-    justify-content: center;
+    width: 70%;
+    box-shadow: 0 0 22px 3px rgba(255, 255, 255, 0.18);
+    padding: 0 2em;
+
 }
 
+.aside-content {
+    width: 25%;
+    box-shadow: 0 0 22px 3px rgba(255, 255, 255, 0.18);
+    padding: 0 2em;
+}
+
+@media screen and (min-width: 840px) {
+    .aside-content {
+        margin-left: 15px;
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .layout {
+        flex-wrap: wrap;
+    }
+
+    .article-container {
+        width: 100%;
+        transition: 0.4s ease-in-out;
+    }
+
+    .aside-content {
+        width: 100%;
+        margin-top: 15px;
+        transition: 0.4s ease-in-out;
+    }
+    /*nav*/
+    .nav-menu {
+        position: absolute;
+        top: 50px;
+        right: 0;
+        bottom: 0;
+        width: 30vw;
+        height: calc(100vh - 50px);
+        background-color: rgba(0, 0, 0, 0.3);
+
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        transform: translateX(100%);
+        transition: 0.4s ease-in-out;
+    }
+    .nav-menu.open{
+        transform: translateX(0);
+        transition: 0.4s ease-in-out;
+    }
+    /* 每个菜单项默认看不到，向右移动20象素 */
+    .nav-menu li {
+        /* 上下间距 */
+        margin: 3vh;
+        transform: translateX(20px);
+        opacity: 0;
+    }
+
+    .burger{
+        display: block;
+    }
+    .burger.active div{
+        transition: 0.3s ease-in-out 0.3s;
+    }
+    .burger.active .top-line{
+        transform: rotate(45deg) translate(4px,6px);
+    }
+    .burger.active .bottom-line{
+        transform: rotate(-45deg)translate(4px,-6px);
+    }
+    .burger.active .middle-line{
+        opacity: 0;
+        transform: translateX(10px);
+        transition: 0.3s ease-in-out;
+    }
+    /* 菜单项滑入动画 */
+    @keyframes slideIn {
+        from {
+            transform: translateX(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+}
