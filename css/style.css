@@ -34,6 +34,7 @@ header {
     height: 100vh;
     background-image: url("../img/back.jpg");
     background-attachment: fixed;
+    overflow-y: hidden;
 }
 
 header h1 {
