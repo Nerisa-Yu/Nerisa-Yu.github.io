@@ -4,6 +4,9 @@ const burger = document.querySelector(".burger");
 const navMenu = document.querySelector(".nav-menu");
 //获取菜单项
 const navMenuItems = document.querySelectorAll(".nav-menu li");
+const nav = document.querySelector(".nav");
+const balls = document.querySelectorAll('.ball');
+const burger1 = document.querySelector("#burger");
 
 //注册监听
 burger.addEventListener("click", () => {
@@ -23,3 +26,22 @@ burger.addEventListener("click", () => {
         }
     });
 });
+
+burger1.addEventListener("click", () => {
+    burger1.classList.toggle("active")
+});
+
+window.addEventListener('scroll', function () {
+    const f1 = window.scrollY > 200;
+    nav.classList.toggle("hidden", f1)
+    balls.forEach((Item)=>{
+        Item.classList.toggle("visible",f1)
+    });
+})
+
+function goToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })
+}

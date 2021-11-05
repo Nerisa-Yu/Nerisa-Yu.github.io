@@ -1,7 +1,7 @@
 /*------nav-----*/
 nav {
     padding: 0 5vw;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -12,6 +12,15 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.nav{
+    opacity: 1;
+    transition: 0.5s;
+}
+.nav.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
 }
 
 .logo {
@@ -48,6 +57,19 @@ nav {
 .burger {
     display: none;
 }
+
+/* 菜单项滑入动画 */
+@keyframes slideIn {
+    from {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 @media screen and (max-width: 1000px) {
     .burger {
         display: block;
@@ -107,16 +129,86 @@ nav {
         transform: translateX(10px);
         transition: 0.3s ease-in-out;
     }
+}
 
-    /* 菜单项滑入动画 */
-    @keyframes slideIn {
-        from {
-            transform: translateX(20px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
+/*Wave-ball*/
+.ball {
+    position: fixed;
+    width: 6vh;
+    height: 6vh; /*球直径*/
+    border-radius: 50%;/*圆角*/
+    left: 95vw;
+    top: -10vh;
+    transform: translate(-50%,-50%);
+    border: 0.5vh white solid;
+    text-align: center;
+    background-color: rgb(20,20,20);
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+.ball#burger.visible {
+    padding: 1vh;
+    top: 85vh;
+    visibility: visible;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.ball#burger.visible div {
+    width: 3vh;
+    height: 0.5vh;
+    background-color: white;
+    transition: 0.3s ease-in-out 0.3s;
+}
+.ball#burger.visible.active .top-line {
+    transform: rotate(45deg) translate(0.7vh, 0.59vh);
+}
+.ball#burger.visible.active .bottom-line {
+    transform: rotate(-45deg) translate(0.7vh, -0.59vh);
+}
+.ball#burger.visible.active .middle-line {
+    opacity: 0;
+    transform: translateX(10px);
+    transition: 0.3s ease-in-out;
+}
+.ball#prograssBar.visible {
+    top: 95vh;
+    visibility: visible;
+    opacity: 1;
+}
+.ball#prograssBar::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 40%;
+    left: -25%;/*波浪左侧高度*/
+    top: -100%;/*波浪高度百分比，数值在-50%~-150%*/
+    animation: swing 5s linear infinite;
+}
+.ball#prograssBar::after {
+    content: '50%';
+    font-size: 1vh;
+    font-weight: bold;
+    color: rgb(127,127,127);
+    display: block;
+    position: absolute;
+    width: 100%;/*左侧对齐，居中*/
+    top: 10%;/*顶对齐*/
+    line-height: 4vh;
+}
+.ball#prograssBar:hover::after {
+    content: '100%';
+}
+@keyframes swing{
+    to {
+        transform: rotate(720deg);/*波浪速度*/
     }
 }
