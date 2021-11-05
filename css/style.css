@@ -12,6 +12,7 @@ body {
     letter-spacing: 0.075em;
     line-height: 1.8em;
     align-items: center;
+    -webkit-text-size-adjust: 100%;
 }
 
 * {
