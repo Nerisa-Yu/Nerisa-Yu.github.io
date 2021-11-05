@@ -5,7 +5,7 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    height: 50px;
+    height: 8vh;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 1;
 
@@ -78,11 +78,11 @@ nav {
     /* 小屏幕菜单显示位置为右侧抽屉形式 */
     .nav-menu {
         position: absolute;
-        top: 50px;
+        top: 8vh;
         right: 0;
         bottom: 0;
         width: 20vw;
-        height: calc(100vh - 50px);
+        height: 92vh;
 
         background-color: rgb(0, 0, 0, 0.3);
         flex-direction: column;
